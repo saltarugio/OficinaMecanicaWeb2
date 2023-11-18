@@ -167,29 +167,45 @@
 
     <button type="submit" id="cadastrobtn" class="btn btn-success">Cadastrar</button>
 </form>
-<div id="alert">
+
+<div type="hidden" id="alert" class="alert">
     @if (ViewBag.Sucesso != null)
     {
         <div class="alert-success" role="alert">
             <p>@ViewBag.Sucesso</p>
         </div>
     }
-    else
+    else if (ViewBag.Erro != null)
     {
         <div class="alert-danger" role="alert">
             <p>@ViewBag.Erro</p>
         </div>
     }
+    
 </div>
+
 <script>
     $(document).ready(function () {
-        // Esconde o bloco de alerta inicialmente
-        $("#alert").hide();
+        // Esconde ambos os blocos de alerta inicialmente
+        $(".alert").hide();
+        $(".alert-danger").hide();
 
         // Adiciona um manipulador de eventos para o botão "Cadastrar"
-        $("#seuBotaoCadastrar").click(function () {
-            // Exibe o bloco de alerta ao clicar no botão
-            $("#alert").show();
+        $("#cadastrobtn").click(function (event) {
+            // Impede o comportamento padrão do botão
+            event.preventDefault();
+
+            // Esconde ambos os blocos de alerta
+            $(".alert-success").hide();
+            $(".alert-danger").hide();
+
+            // Exibe o bloco de alerta apropriado ao clicar no botão
+            $(".alert-success").show();
+            $(".alert-danger").show();
+
+            // Role a página para o topo para visualizar o alerta
+            $("html, body").animate({ scrollTop: 0 }, "slow");
         });
     });
 </script>
+

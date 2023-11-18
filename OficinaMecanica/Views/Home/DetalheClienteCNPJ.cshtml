@@ -1,6 +1,6 @@
 ﻿@model OficinaMecanica.Models.POJO.Cliente
 @{
-    ViewData["Title"] = "Editar Cliente";
+    ViewData["Title"] = "Detalhe Cliente";
 }
 <link rel="stylesheet" href="~/css/forms.css"/>
 <form action="" method="post">
@@ -27,6 +27,10 @@
 
         <label for="email">email</label>
         <input type="email" class="form-control" id="email" name="email" value="@Model.email" disabled>
+
+        <label for="nomeFantasia">Nome Fantasia</label>
+        <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" value="@Model.nomeFantasia" disabled>
+
         
         <label for="telefone">telefone</label>
         <input type="tel" class="form-control" id="telefone" name="telefone" value="@Model.telefone" disabled>
@@ -94,31 +98,32 @@
         <input type="text" class="form-control" id="numero" name="numero" value="@Model.numero" disabled>
 
         <label for="dataNascimento">Data de Nascimento</label>
-        <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" value="@Model.dataNascimento" disabled>
+        <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" value="@Model.dataNascimento.ToString("dd/MM/yyyy")" disabled>
 
         <label for="dataAtual">Data do Cadastro</label>
-        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro" disabled>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" disabled>
     </div>
     <div class="custom-control custom-radio">
         <input type="radio" id="masculino" name="customRadio" class="custom-control-input" value="masculino" disabled>
-        <label class="custom-control-label" for="customRadio1" disabled>Masculino</label>
+        <label class="custom-control-label" for="masculino" disabled>Masculino</label>
     </div>
     <div class="custom-control custom-radio">
         <input type="radio" id="feminino" name="customRadio" class="custom-control-input" value="feminino" disabled>
-        <label class="custom-control-label" for="customRadio2" disabled>Feminino</label>
+        <label class="custom-control-label" for="feminino" disabled>Feminino</label>
     </div>
     <!-- Adicione um input hidden para armazenar o valor selecionado do radio button -->
-    <input type="hidden" id="sexo" name="sexo" disabled>
+    <input type="hidden" id="sexo" name="sexo" value="@Model.sexo">
 
     <!-- JavaScript para atualizar o valor do input hidden com o radio button selecionado -->
     <script>
         var masculinoRadio = document.getElementById("masculino");
         var femininoRadio = document.getElementById("feminino");
+        var sexoInput = document.getElementById("sexo");
 
-        if (@Model.sexo == "masculino") {
+        if ("@Model.sexo" === "masculino") {
             masculinoRadio.checked = true;
             femininoRadio.checked = false;
-        } else if (@Model.sexo == "feminino") {
+        } else if ("@Model.sexo" === "feminino") {
             masculinoRadio.checked = false;
             femininoRadio.checked = true;
         }

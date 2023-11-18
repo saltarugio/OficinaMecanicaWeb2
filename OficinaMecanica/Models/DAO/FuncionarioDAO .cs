@@ -179,7 +179,7 @@ namespace OficinaMecanica.Models.DAO
                 {
                     obj.idFuncionario = Reader.GetInt32(0);
                     obj.nomeFuncionario = (!Reader.IsDBNull(1)) ? Reader.GetString(1) : string.Empty;
-                    obj.rg = Reader.GetInt32(2);
+                    obj.rg = (!Reader.IsDBNull(2)) ? Reader.GetString(2) : string.Empty;
                     obj.cpf = (!Reader.IsDBNull(3)) ? Reader.GetString(3) : string.Empty;
                     obj.sexo = (!Reader.IsDBNull(4)) ? Reader.GetString(4) : string.Empty;
                     obj.salario = Reader.GetInt32(5);

@@ -22,16 +22,19 @@
             // Adicione um evento para atualizar o valor quando os radio buttons forem alterados
             document.getElementById("cpf").value = cpf;
         </script>
-        <label for="email">email</label>
+        <label for="email">E-mail</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email do cliente.." required>
         
-        <label for="telefone">telefone</label>
+        <label for="fantasia">Nome Fantasia</label>
+        <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" placeholder="Digite o nome fantasia da empresa.." required>
+
+        <label for="telefone">Telefone</label>
         <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone do cliente..">
         
-        <label for="celular">celular</label>
+        <label for="celular">Celular</label>
         <input type="tel" class="form-control" id="nomeClcelulariente" name="celular" placeholder="Digite o celular do cliente.." required>
 
-        <label for="cep">cep</label>
+        <label for="cep">CEP</label>
         <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o cep do cliente.." required>
        
         <label for="uf">Estado</label>
@@ -66,16 +69,16 @@
             <option value="TO">Tocantins</option>
         </select>
         
-        <label for="cidade">cidade</label>
+        <label for="Cidade">cidade</label>
         <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite o nome do cliente.." required>
         
-        <label for="bairro">bairro</label>
+        <label for="Bairro">bairro</label>
         <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o bairro do cliente.." required>
         
-        <label for="rua">rua</label>
+        <label for="Rua">rua</label>
         <input type="text" class="form-control" id="rua" name="rua" placeholder="Digite o nome da rua.." required>
 
-        <label for="numero">numero</label>
+        <label for="Número">numero</label>
         <input type="text" class="form-control" id="numero" name="numero" placeholder="Digite o numero.." required>
 
         <label for="dataNascimento">Data de Nascimento</label>
@@ -135,7 +138,7 @@
     <div class="form-check">
 
         <input type="checkbox" class="form-check-input" id="status" name="status" disabled required>
-        <label class="form-check-label" for="statusCheckbox" disabled>Ativo</label>
+        <label class="form-check-label" for="statusCheckbox" disabled>Status</label>
         <script>
             // Defina o estado inicial como Ativado
             document.getElementById("status").checked = true;

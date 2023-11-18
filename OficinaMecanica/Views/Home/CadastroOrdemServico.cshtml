@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Cadastro Ordem de Serviço";
 }
 <!-- Inclua o jQuery -->
@@ -63,33 +62,9 @@
                 }
             });
         </script>
-
-        <input type="hidden" class="form-control" id="hora" name="hora" required>
-        <script>
-            // Função para obter a hora atual e atualizar o campo "hora"
-            function atualizarHora() {
-                var campoHora = document.getElementById("hora");
-                var dataAtual = new Date();
-                var hora = dataAtual.getHours();
-                var minutos = dataAtual.getMinutes();
-                var segundos = dataAtual.getSeconds();
-
-                // Formate a hora no formato HH:MM:SS
-                var horaFormatada = hora.toString().padStart(2, '0') + ":" +
-                    minutos.toString().padStart(2, '0') + ":" +
-                    segundos.toString().padStart(2, '0');
-
-                // Atribua a hora formatada ao campo "hora"
-                campoHora.value = horaFormatada;
-            }
-
-            // Chame a função para definir a hora no carregamento da página
-            atualizarHora();
-
-            // Atualize a hora a cada segundo (opcional)
-            setInterval(atualizarHora, 1000);
-        </script>
-    
+        <label>Hora do serviço</label>
+        <input type="time" class="form-control" id="hora" name="hora" required>
+        
         <label for="funcionario">Funcionario</label>
         <select name="funcionario_idFuncionario" class="form-control">
             @if (ViewBag.Funcionarios != null)

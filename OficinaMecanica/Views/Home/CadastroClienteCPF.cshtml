@@ -6,7 +6,7 @@
     <h1>@ViewData["Title"]</h1>
     <div class="form-group">
         <label for="nome">Nome do Cliente</label>
-        <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" placeholder="Digite o nome do cliente.." required>
+        <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" placeholder="Digite o nome do cliente.." oninput="updateNomeFantasia()" required>
         
         <input type="hidden" class="form-control" id="cnpj" name="cnpj" value=" " required>
         
@@ -23,8 +23,16 @@
             document.getElementById("cnpj").value = cnpj;
         </script>
         <label for="email">email</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Digite o email do cliente.." required>
-        
+        <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email do cliente.." required>
+
+        <input type="hidden" class="form-control" id="nomeFantasia" name="nomeFantasia" placeholder="Digite o nome fantasia da empresa.." readonly />
+        <script>
+            function updateNomeFantasia() {
+                var nome = document.getElementById("nomeCliente").value;
+                document.getElementById("nomeFantasia").value = nome;
+            }
+        </script>
+
         <label for="telefone">telefone</label>
         <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone do cliente..">
         

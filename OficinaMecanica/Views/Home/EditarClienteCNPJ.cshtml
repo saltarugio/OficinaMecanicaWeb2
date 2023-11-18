@@ -94,33 +94,32 @@
         <input type="text" class="form-control" id="numero" name="numero" value="@Model.numero" placeholder="Digite o numero.." required>
 
         <label for="dataNascimento">Data de Nascimento</label>
-        <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" value="@Model.dataNascimento" placeholder="Data do nascimento" required>
+        <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" value="@Model.dataNascimento.ToString("dd/MM/yyyy")" placeholder="Data do nascimento" required>
 
         <label for="dataAtual">Data do Cadastro</label>
-        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro" placeholder="Data do cadastro" readonly required>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" placeholder="Data do cadastro" readonly required>
     </div>
     <div class="custom-control custom-radio">
-        <input type="radio" id="masculino" name="customRadio" class="custom-control-input" value="masculino">
-        <label class="custom-control-label" for="customRadio1">Masculino</label>
+        <input type="radio" id="masculino" name="customRadio" class="custom-control-input" value="masculino" >
+        <label class="custom-control-label" for="masculino" >Masculino</label>
     </div>
     <div class="custom-control custom-radio">
-        <input type="radio" id="feminino" name="customRadio" class="custom-control-input" value="feminino">
-        <label class="custom-control-label" for="customRadio2">Feminino</label>
+        <input type="radio" id="feminino" name="customRadio" class="custom-control-input" value="feminino" >
+        <label class="custom-control-label" for="feminino" >Feminino</label>
     </div>
     <!-- Adicione um input hidden para armazenar o valor selecionado do radio button -->
-    <input type="hidden" id="sexo" name="sexo">
+    <input type="hidden" id="sexo" name="sexo" value="@Model.sexo">
 
     <!-- JavaScript para atualizar o valor do input hidden com o radio button selecionado -->
     <script>
-        // Obtenha referências para os elementos
         var masculinoRadio = document.getElementById("masculino");
         var femininoRadio = document.getElementById("feminino");
         var sexoInput = document.getElementById("sexo");
 
-        if (@Model.sexo == "masculino") {
+        if ("@Model.sexo" === "masculino") {
             masculinoRadio.checked = true;
             femininoRadio.checked = false;
-        } else if (@Model.sexo == "feminino") {
+        } else if ("@Model.sexo" === "feminino") {
             masculinoRadio.checked = false;
             femininoRadio.checked = true;
         }

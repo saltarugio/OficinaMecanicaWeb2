@@ -16,7 +16,7 @@
         public DateTime dataNascimento { get; set; }
         public DateTime dataAdmissao { get; set; }
         public int numero { get; set; }
-        public int rg { get; set; }
+        public string rg { get; set; }
         public int salario { get; set; }
         public int status {  get; set; }
         public DateTime dataCadastro { get; set; }

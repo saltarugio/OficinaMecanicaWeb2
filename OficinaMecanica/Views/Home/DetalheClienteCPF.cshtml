@@ -105,24 +105,25 @@
     </div>
     <div class="custom-control custom-radio">
         <input type="radio" id="masculino" name="customRadio" class="custom-control-input" value="masculino" disabled>
-        <label class="custom-control-label" for="customRadio1" disabled>Masculino</label>
+        <label class="custom-control-label" for="masculino" disabled>Masculino</label>
     </div>
     <div class="custom-control custom-radio">
         <input type="radio" id="feminino" name="customRadio" class="custom-control-input" value="feminino" disabled>
-        <label class="custom-control-label" for="customRadio2" disabled>Feminino</label>
+        <label class="custom-control-label" for="feminino" disabled>Feminino</label>
     </div>
     <!-- Adicione um input hidden para armazenar o valor selecionado do radio button -->
-    <input type="hidden" id="sexo" name="sexo">
+    <input type="hidden" id="sexo" name="sexo" value="@Model.sexo">
 
     <!-- JavaScript para atualizar o valor do input hidden com o radio button selecionado -->
     <script>
         var masculinoRadio = document.getElementById("masculino");
         var femininoRadio = document.getElementById("feminino");
+        var sexoInput = document.getElementById("sexo");
 
-        if (@Model.sexo == "masculino") {
+        if ("@Model.sexo" === "masculino") {
             masculinoRadio.checked = true;
             femininoRadio.checked = false;
-        } else if (@Model.sexo == "feminino") {
+        } else if ("@Model.sexo" === "feminino") {
             masculinoRadio.checked = false;
             femininoRadio.checked = true;
         }
