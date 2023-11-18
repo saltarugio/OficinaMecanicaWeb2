@@ -1,0 +1,60 @@
+﻿@model OficinaMecanica.Models.POJO.OrdemServico
+@{
+    ViewData["Title"] = "Editar Ordem de Serviço";
+}
+
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <input type="hidden" name="idOrdemServico" value="@Model.idOrdemServico" disabled>
+        <label for="text">Dia do Serviço</label>
+        <input type="text" class="form-control" id="data" name="data" value="@Model.data.ToString("dd/MM/yyyy")" disabled>
+        
+        <label for="observacao">Observação</label>
+        <input type="text" class="form-control" id="observacao" name="observacao" value="@Model.observacao" disabled>
+        
+        <label for="desconto">Desconto</label>
+        <input type="text" class="form-control" id="desconto" name="desconto" value="@Model.desconto" disabled>
+        
+        <label for="valor">Valor</label>
+        <input type="text" class="form-control" id="valor" name="valor" value="@Model.valor" disabled>
+        
+        <label for="hora">Hora do serviço</label>
+        <input type="text" class="form-control" id="hora" name="hora" value="@Model.hora" disabled>
+        
+    
+        <label for="funcionario">Funcionario</label>
+        <select id="funcionario" name="funcionario_idFuncionario" class="form-control" disabled>
+            @if (Model != null)
+            {
+                <option value="@Model.funcionario_idFuncionario">@Model.funcionario.nomeFuncionario</option>
+            }
+        </select>
+
+        <label for="veiculo">Veiculo</label>
+        <select id="veiculo" name="veiculo_idVeiculo" class="form-control" disabled>
+            @if (Model != null)
+            {
+                <option value="@Model.veiculo_idVeiculo">@Model.veiculo.placa</option>
+            }
+        </select>
+
+        <label for="cliente">Cliente</label>
+        <select id="cliente" name="cliente_idCliente" class="form-control" disabled>
+            @if (Model != null)
+            {
+                <option value="@Model.cliente_idCliente">@Model.cliente.nomeCliente</option>
+            }
+        </select>
+
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" readonly required>
+    </div>
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</form>

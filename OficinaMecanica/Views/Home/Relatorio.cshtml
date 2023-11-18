@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Relatórios";
+
+    var quantidadeOrS = ViewBag.Quantidade;
+    var quantidadeVei = ViewBag.Quantidades;
+    var calculaValor = ViewBag.CalculaValor;
+
+    // Supondo que você tenha uma propriedade "QuantidadeOrdensServico" em cada funcionário
+    var quanOrS = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(quantidadeOrS));
+    var quanVei = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(quantidadeVei));
+    var calc = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(calculaValor));
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h2>Gráfico Quantidade de ordem de serviço por funcionário</h2>
+    <canvas id="grafico" width="400" height="150"></canvas>
+    <hr>
+</div>
+<div>
+    <h2>Gráfico Quantidade de veiculos por cliente</h2>
+    <canvas id="grafico1" width="400" height="150"></canvas>
+    <hr>
+</div>
+<div>
+    <h2>Gráfico Valor por Dia</h2>
+    <canvas id="grafico2" width="400" height="150"></canvas>
+    <hr>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('grafico');
+    const ctx1 = document.getElementById('grafico1');
+    const ctx2 = document.getElementById('grafico2');
+    
+    const countOrS = @Html.Raw(quanOrS);
+    const countVei = @Html.Raw(quanVei);
+    const calcValor = @Html.Raw(calc);
+
+
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                data: countOrS,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                data: countVei,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            datasets: [{
+                data: calcValor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value, index, values) {
+                            // Formata o valor com vírgula como separador de milhares e ponto como separador decimal
+                            return value.toLocaleString('pt-BR');
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+</script>

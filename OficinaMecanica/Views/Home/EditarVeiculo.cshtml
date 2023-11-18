@@ -1,0 +1,101 @@
+﻿@model OficinaMecanica.Models.POJO.Veiculo
+@{
+    ViewData["Title"] = "Editar Veiculo";
+}
+
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>Veiculos</h1>
+    <div class="form-group">
+        <input type="hidden" class="form-control" name="idVeiculo" value="@Model.idVeiculo" required>
+        <label for="ano">Ano do Veiculo</label>
+        <input type="text" class="form-control" id="ano" name="ano" value="@Model.ano" required>
+        
+        <label for="placa">Placa do Veiculo</label>
+        <input type="text" class="form-control" id="placa" name="placa" value="@Model.placa" required>
+    
+        <label for="marca">Marca</label>
+        <select id="marca" name="marca_idMarca" class="form-control">
+            @if (Model.marcas != null)
+            {
+                foreach (var item in ViewBag.Marcas)
+                {
+                    <option value="@item.idMarca">@item.nomeMarca</option>
+                }
+            }
+        </select>
+
+        <label for="modelo">Modelo</label>
+        <select id="modelo" name="modelo_idModelo" class="form-control">
+            @if (Model.modelos != null)
+            {
+                foreach (var item in ViewBag.Modelos)
+                {
+                    <option value="@item.idModelo">@item.nomeModelo</option>
+                }
+            }
+        </select>
+
+        <label for="cliente">Cliente</label>
+        <select id="cliente" name="cliente_idCliente" class="form-control">
+            @if (Model.clientes != null)
+            {
+                foreach (var item in ViewBag.Clientes)
+                {
+                    <option value="@item.idCliente">@item.nomeCliente</option>
+                }
+            }
+        </select>
+        <script>
+            // Evento para atualizar o valor do campo "cargo" antes de enviar o formulário
+            document.getElementById("cadastrobtn").addEventListener("click", function (event) {
+                // Obtenha o valor selecionado do campo "cargo"
+                var marcaSelect = document.getElementById("marca");
+                var selectedMarca = marcaSelect.options[marcaSelect.selectedIndex].value;
+                document.getElementById("marca").value = selectedMarca;
+
+                var modeloSelect = document.getElementById("modelo");
+                var selectedModelo = modeloSelect.options[modeloSelect.selectedIndex].value;
+                document.getElementById("modelo").value = selectedModelo;
+
+                var clienteSelect = document.getElementById("cliente");
+                var selectedCliente = clienteSelect.options[clienteSelect.selectedIndex].value;
+                document.getElementById("cliente").value = selectedCliente;
+            });
+        </script>
+        
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" readonly required>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status1">
+        <input type="hidden" id="status" name="status" />
+        <label class="form-check-label" for="status">Ativo</label>
+    </div>
+        <script>
+            if (@Model.status == 0) {
+                document.getElementById("status1").checked = true;
+            } if (@Model.status == 1) {
+                document.getElementById("status1").checked = false;
+            }
+            const selecionado = document.querySelector("#status1");
+
+            selecionado.addEventListener("change", (el) => {
+                if (selecionado.checked) {
+                    document.getElementById("status").value = 0;
+                } else {
+                    document.getElementById("status").value = 1;
+                }
+            });
+
+            selecionado.dispatchEvent(new Event("change"));
+        </script>
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <button type="submit" id="cadastrobtn" class="btn btn-success">Alterar</button>
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</form>

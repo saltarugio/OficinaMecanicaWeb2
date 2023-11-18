@@ -1,0 +1,48 @@
+﻿@model OficinaMecanica.Models.POJO.Cargo
+@{
+    ViewData["Title"] = "Editar Cargo";
+}
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <input type="hidden" class="form-control" name="idCargo" value="@Model.idCargo" />
+        <label for="nome">Nome do cargo</label>
+        <input type="text" class="form-control" id="nomeCargo" name="nomeCargo" value="@Model.nomeCargo" required>
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" readonly required>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status1">
+        <input type="hidden" id="status" name="status" />
+        <label class="form-check-label" for="status">Ativo</label>
+    </div>
+
+    <script>
+        if (@Model.status == 0) {
+            document.getElementById("status1").checked = true;
+        } if(@Model.status == 1) {
+            document.getElementById("status1").checked = false;
+        }
+        const selecionado = document.querySelector("#status1");
+
+        selecionado.addEventListener("change", (el) => {
+            if (selecionado.checked) {
+                document.getElementById("status").value = 0;
+            } else {
+                document.getElementById("status").value = 1;
+            }
+        });
+
+        selecionado.dispatchEvent(new Event("change"));
+    </script>
+
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <button type="submit" id="cadastrobtn" class="btn btn-success">Alterar</button>
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</form>

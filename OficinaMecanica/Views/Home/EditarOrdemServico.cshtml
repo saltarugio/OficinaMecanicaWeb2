@@ -1,0 +1,131 @@
+﻿@model OficinaMecanica.Models.POJO.OrdemServico
+@{
+    ViewData["Title"] = "Editar Ordem de Serviço";
+}
+
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <input type="hidden" name="idOrdemServico" value="@Model.idOrdemServico" required>
+        <label for="text">Dia do Serviço</label>
+        <input type="text" class="form-control" id="data" name="data" value="@Model.data" required>
+        
+        <label for="observacao">Observação</label>
+        <input type="text" class="form-control" id="observacao" name="observacao" value="@Model.observacao" required>
+        
+        <label for="desconto">Desconto</label>
+        <input type="text" class="form-control" id="desconto" name="desconto" value="@Model.desconto">
+
+        <div id="checkboxes">
+            @if (ViewBag.Servicos != null)
+            {
+                foreach (var item in ViewBag.Servicos)
+                {
+                    <label>
+                        <input type="checkbox" class="servicoCheckbox" id="@item.idServico" name="idServico" value="@item.preco">
+                        @item.nomeServico
+                    </label>
+                    <br>
+                }
+            }
+        </div>
+
+        <label for="valor">Valor Total</label>
+        <input type="text" class="form-control" id="valor" name="valor" value="@Model.valor" readonly required>
+
+        <script>
+            $(document).ready(function () {
+                // Evento de mudança nos checkboxes
+                $('.servicoCheckbox, #desconto').change(function () {
+                    calcularTotal();
+                });
+
+                // Função para calcular o valor total
+                function calcularTotal() {
+                    var total = 0;
+
+                    $('.servicoCheckbox:checked').each(function () {
+                        var valor = parseFloat($(this).val());
+                        total += valor;
+                    });
+
+                    var desconto = parseFloat($('#desconto').val()) || 0;
+
+                    // Aplica o desconto ao valor total
+                    total -= total * (desconto / 100 || 0);
+
+                    // Atualiza o valor total no campo de texto
+                    $('#valor').val(total.toFixed(2));
+                }
+            });
+        </script>
+        
+        <label for="hora">Hora do serviço</label>
+        <input type="text" class="form-control" id="hora" name="hora" value="@Model.hora" required>
+        
+    
+        <label for="funcionario">Funcionario</label>
+        <select id="funcionario" name="funcionario_idFuncionario" class="form-control">
+            @if (ViewBag.Funcionarios != null)
+            {
+                <option value="@ViewBag.idFuncionario">@ViewBag.nomeFuncionario</option>
+                foreach (var item in ViewBag.Funcionarios)
+                {
+                    <option value="@item.idFuncionario">@item.nomeFuncionario</option>
+                }
+            }
+        </select>
+
+        <label for="veiculo">Veiculo</label>
+        <select id="veiculo" name="veiculo_idVeiculo" class="form-control">
+            @if (ViewBag.Veiculos != null)
+            {
+                <option value="@ViewBag.idVeiculo">@ViewBag.placa</option>
+                foreach (var item in ViewBag.Veiculos)
+                {
+                    <option value="@item.idVeiculo">@item.placa</option>
+                }
+            }
+        </select>
+
+        <label for="cliente">Cliente</label>
+        <select id="cliente" name="cliente_idCliente" class="form-control">
+            @if (ViewBag.Clientes != null)
+            {
+                <option value="@ViewBag.idCliente">@ViewBag.nomeCliente</option>
+                foreach (var item in ViewBag.Clientes)
+                {
+                    <option value="@item.idCliente">@item.nomeCliente</option>
+                }
+            }
+        </select>
+
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" readonly required>
+    </div>
+    <script>
+        // Evento para atualizar o valor do campo "cargo" antes de enviar o formulário
+        document.getElementById("cadastrobtn").addEventListener("click", function (event) {
+            // Obtenha o valor selecionado do campo "cargo"
+            var funcionarioSelect = document.getElementById("funcionario");
+            var selectedFuncionario = funcionarioSelect.options[funcionarioSelect.selectedIndex].value;
+            document.getElementById("funcionario").value = selectedFuncionario;
+
+            var veiculoSelect = document.getElementById("veiculo");
+            var selectedVeiculo = veiculoSelect.options[veiculoSelect.selectedIndex].value;
+            document.getElementById("veiculo").value = selectedVeiculo;
+
+            var clienteSelect = document.getElementById("cliente");
+            var selectedCliente = clienteSelect.options[clienteSelect.selectedIndex].value;
+            document.getElementById("cliente").value = selectedCliente;
+        });
+    </script>
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <button type="submit" id="cadastrobtn" class="btn btn-success">Alterar</button>
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</form>

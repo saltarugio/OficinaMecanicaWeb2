@@ -1,0 +1,184 @@
+﻿@model OficinaMecanica.Models.POJO.Funcionario
+@{
+    ViewData["Title"] = "Editar Funcionário";
+}
+<link rel="stylesheet" href="~/css/forms.css"/>
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <input type="hidden" name="idFuncionario" value="@Model.idFuncionario" readonly />
+        <label for="nome">Nome do funcionario</label>
+        <input type="text" class="form-control" id="nomefuncionario" name="nomefuncionario" value="@Model.nomeFuncionario" required>
+        
+        <label for="rg">RG</label>
+        <input type="text" class="form-control" id="rg" name="rg" value="@Model.rg" placeholder="Digite o rg.." required>
+        
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" value="@Model.cpf" placeholder="Digite cpf do funcionario.." required>
+        
+        <label for="salario">Salario</label>
+        <input type="text" class="form-control" id="salario" name="salario" value="@Model.salario" placeholder="Digite o salario do funcionario.." required>
+        
+        <label for="telefone">telefone</label>
+        <input type="tel" class="form-control" id="telefone" name="telefone" value="@Model.telefone" placeholder="Digite o telefone do funcionario..">
+        
+        <label for="celular">celular</label>
+        <input type="tel" class="form-control" id="celular" name="celular" value="@Model.celular" placeholder="Digite o celular do funcionario.." required>
+
+        <label for="cep">cep</label>
+        <input type="text" class="form-control" id="cep" name="cep" value="@Model.cep" placeholder="Digite o cep do funcionario.." required>
+        
+        <label for="uf">Estado</label>
+        <select id="uf" name="uf" class="form-control">
+            <option value="">Selecione um estado</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+        <script>
+            // Obtenha o valor do estado do modelo
+            var estadoSelecionado = "@Model.uf";
+
+            // Selecione o estado correto no dropdown
+            var select = document.getElementById("uf");
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === estadoSelecionado) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+        </script>
+        <label for="cidade">cidade</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" value="@Model.cidade" placeholder="Digite o nome do funcionario.." required>
+        
+        <label for="bairro">bairro</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" value="@Model.bairro" placeholder="Digite o bairro do funcionario.." required>
+        
+        <label for="rua">rua</label>
+        <input type="text" class="form-control" id="rua" name="rua" value="@Model.rua" placeholder="Digite o nome da rua.." required>
+
+        <label for="numero">numero</label>
+        <input type="text" class="form-control" id="numero" name="numero" value="@Model.numero" placeholder="Digite o numero.." required>
+
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" value="@Model.dataNascimento.ToString("dd/MM/yyyy")" placeholder="Data do nascimento" required>
+
+        <label for="dataAtual">Data do Admissao</label>
+        <input type="text" class="form-control" id="dataAdmissao" name="dataAdmissao" value="@Model.dataAdmissao.ToString("dd/MM/yyyy")" readonly required>
+        
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="hidden" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro" readonly required>
+        
+        <label for="cargo">Cargo</label>
+        <select id="cargo" name="cargo_idCargo" class="form-control">
+            @foreach (var item in ViewBag.Cargos)
+            {
+                <option value="@item.idCargo">@item.nomeCargo</option>
+            }
+        </select>
+        
+
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="masculino" name="customRadio" class="custom-control-input" value="masculino">
+        <label class="custom-control-label" for="customRadio1">Masculino</label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="feminino" name="customRadio" class="custom-control-input" value="feminino">
+        <label class="custom-control-label" for="customRadio2">Feminino</label>
+    </div>
+    <!-- Adicione um input hidden para armazenar o valor selecionado do radio button -->
+    <input type="hidden" id="sexo" name="sexo">
+
+    <!-- JavaScript para atualizar o valor do input hidden com o radio button selecionado -->
+    <script>
+        if (@Model.sexo == "masculino") {
+            masculinoRadio.checked = true;
+            femininoRadio.checked = false;
+        } else if (@Model.sexo == "feminino") {
+            masculinoRadio.checked = false;
+            femininoRadio.checked = true;
+        }
+        // Obtenha referências para os elementos
+        var masculinoRadio = document.getElementById("masculino");
+        var femininoRadio = document.getElementById("feminino");
+        var sexoInput = document.getElementById("sexo");
+
+        // Adicione um evento para atualizar o valor quando os radio buttons forem alterados
+        masculinoRadio.addEventListener("change", function () {
+            sexoInput.value = "masculino";
+        });
+
+        femininoRadio.addEventListener("change", function () {
+            sexoInput.value = "feminino";
+        });
+    </script>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status1">
+        <input type="hidden" id="status" name="status" />
+        <label class="form-check-label" for="status">Ativo</label>
+    </div>
+    <script>
+        if (@Model.status == 0) {
+            document.getElementById("status1").checked = true;
+        } if (@Model.status == 1) {
+            document.getElementById("status1").checked = false;
+        }
+        const selecionado = document.querySelector("#status1");
+
+        selecionado.addEventListener("change", (el) => {
+            if (selecionado.checked) {
+                document.getElementById("status").value = 0;
+            } else {
+                document.getElementById("status").value = 1;
+            }
+        });
+
+        selecionado.dispatchEvent(new Event("change"));
+    </script>
+
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <button type="submit" id="cadastrobtn" class="btn btn-success">Alterar</button>
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+    <script>
+        // Evento para atualizar o valor do campo "cargo" antes de enviar o formulário
+        document.getElementById("cadastrobtn").addEventListener("click", function (event) {
+            // Obtenha o valor selecionado do campo "cargo"
+            var cargoSelect = document.getElementById("cargo");
+            var selectedCargo = cargoSelect.options[cargoSelect.selectedIndex].value;
+
+            // Atualize o valor do campo "cargo" com o valor selecionado
+            document.getElementById("cargo").value = selectedCargo;
+        });
+    </script>
+
+</form>

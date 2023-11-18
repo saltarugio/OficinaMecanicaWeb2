@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastro Ordem de Serviço";
+}
+<!-- Inclua o jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <label for="data">Dia do Serviço</label>
+        <input type="date" class="form-control" id="data" name="data" placeholder="Digite o ano.." required>
+        
+        <label for="observacao">Observação</label>
+        <input type="text" class="form-control" id="observacao" name="observacao" placeholder="Descreva o Serviço.." required>
+        
+        <label for="desconto">Desconto</label>
+        <input type="text" class="form-control" id="desconto" name="desconto" placeholder="Digite o desconto..">
+
+        <div id="checkboxes">
+            @if (ViewBag.Servicos != null)
+            {
+                foreach (var item in ViewBag.Servicos)
+                {
+                    <label>
+                        <input type="checkbox" class="servicoCheckbox" id="@item.idServico" name="idServico" value="@item.preco">
+                        @item.nomeServico
+                    </label>
+                    <br>
+                }
+            }
+        </div>
+
+        <label for="valor">Valor Total</label>
+        <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor total.." readonly required>
+
+        <script>
+            $(document).ready(function () {
+                // Evento de mudança nos checkboxes
+                $('.servicoCheckbox, #desconto').change(function () {
+                    calcularTotal();
+                });
+
+                // Função para calcular o valor total
+                function calcularTotal() {
+                    var total = 0;
+
+                    $('.servicoCheckbox:checked').each(function () {
+                        var valor = parseFloat($(this).val());
+                        total += valor;
+                    });
+
+                    var desconto = parseFloat($('#desconto').val()) || 0;
+
+                    // Aplica o desconto ao valor total
+                    total -= total * (desconto / 100 || 0);
+                    // Formata o valor para enviar para o banco de dados
+                    total = parseFloat(total.toFixed(2));  // Converte para número com 2 casas decimais
+
+                    // Atualiza o valor total no campo de texto usando toLocaleString
+                    $('#valor').val(total.toLocaleString('pt-BR', { minimumFractionDigits: 2 }));
+                }
+            });
+        </script>
+
+        <input type="hidden" class="form-control" id="hora" name="hora" required>
+        <script>
+            // Função para obter a hora atual e atualizar o campo "hora"
+            function atualizarHora() {
+                var campoHora = document.getElementById("hora");
+                var dataAtual = new Date();
+                var hora = dataAtual.getHours();
+                var minutos = dataAtual.getMinutes();
+                var segundos = dataAtual.getSeconds();
+
+                // Formate a hora no formato HH:MM:SS
+                var horaFormatada = hora.toString().padStart(2, '0') + ":" +
+                    minutos.toString().padStart(2, '0') + ":" +
+                    segundos.toString().padStart(2, '0');
+
+                // Atribua a hora formatada ao campo "hora"
+                campoHora.value = horaFormatada;
+            }
+
+            // Chame a função para definir a hora no carregamento da página
+            atualizarHora();
+
+            // Atualize a hora a cada segundo (opcional)
+            setInterval(atualizarHora, 1000);
+        </script>
+    
+        <label for="funcionario">Funcionario</label>
+        <select name="funcionario_idFuncionario" class="form-control">
+            @if (ViewBag.Funcionarios != null)
+            {
+                <option value="">Selecione uma opção</option>
+                foreach (var item in ViewBag.Funcionarios)
+                {
+                    <option value="@item.idFuncionario">@item.nomeFuncionario</option>
+                }
+            }
+        </select>
+
+        <label for="veiculo">Veiculo</label>
+        <select name="veiculo_idVeiculo" class="form-control">
+            @if (ViewBag.Veiculos != null)
+            {
+                <option value="">Selecione uma opção</option>
+                foreach (var item in ViewBag.Veiculos)
+                {
+                    <option value="@item.idVeiculo">@item.placa</option>
+                }
+            }
+        </select>
+
+        <label for="cliente">Cliente</label>
+        <select name="cliente_idCliente" class="form-control">
+            @if (ViewBag.Clientes != null)
+            {
+                <option value="">Selecione uma opção</option>
+                foreach (var item in ViewBag.Clientes)
+                {
+                    <option value="@item.idCliente">@item.nomeCliente</option>
+                }
+            }
+        </select>
+
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="date" class="form-control" id="dataCadastro" name="dataCadastro" value="" placeholder="Data do cadastro" readonly required>
+        <script>
+            // Obtém a data atual
+            var dataAtual = new Date();
+
+            // Formata a data no formato "YYYY-MM-DD" esperado pelo campo de data
+            var ano = dataAtual.getFullYear();
+            var mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+            var dia = dataAtual.getDate().toString().padStart(2, '0');
+            var dataFormatada = ano + '-' + mes + '-' + dia;
+
+            // Define o valor do campo de data para a data atual formatada
+            document.getElementById('dataCadastro').value = dataFormatada;
+        </script>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status" name="status" disabled required>
+
+        <label class="form-check-label" for="statusCheckbox" disabled>Ativo</label>
+        <script>
+            // Defina o estado inicial como Ativado
+            document.getElementById("status").checked = true;
+            // Verifique o estado atual do checkbox
+            var checkbox = document.getElementById("status");
+            var resultado = checkbox.Checked ? 1 : 0;
+            /*if (checkbox == true) {
+                resultado = 0;
+            }
+            else {
+                resultado = 1;
+            }*/
+            document.getElementById("status").value = resultado;
+
+        </script>
+    </div>
+    <input type="hidden" id="servicosSelecionados" name="servicosSelecionados" />
+    <button type="submit" id="cadastrobtn" class="btn btn-success">Cadastrar</button>
+</form>
+<div id="alert">
+    @if (ViewBag.Sucesso != null)
+    {
+        <div class="alert-success" role="alert">
+            <p>@ViewBag.Sucesso</p>
+        </div>
+    }
+    else
+    {
+        <div class="alert-danger" role="alert">
+            <p>@ViewBag.Erro</p>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        // Esconde o bloco de alerta inicialmente
+        $("#alert").hide();
+
+        // Adicione um manipulador de eventos para o botão "Cadastrar"
+        $("#cadastrobtn").click(function () {
+            // Atualize o campo oculto com os IDs dos serviços selecionados
+            var servicosSelecionados = $('.servicoCheckbox:checked').map(function () {
+                return this.id; // Assumindo que o ID do serviço é usado como valor do checkbox
+            }).get();
+            $("#servicosSelecionados").val(servicosSelecionados.join(','));
+
+        // Adiciona um manipulador de eventos para o botão "Cadastrar"
+        $("#seuBotaoCadastrar").click(function () {
+            // Exibe o bloco de alerta ao clicar no botão
+            $("#alert").show();
+        });
+    });
+</script>

@@ -1,0 +1,30 @@
+html {
+    font-size: 14px;
+}
+table {
+    display: none;
+    visibility: hidden;
+    width: 100%;
+}
+tbody {
+    width: 100%;
+}
+/* Mostrar a tabela correspondente quando selecionada */
+table[data-categoria] {
+    display: block;
+    visibility: visible;
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}

@@ -1,0 +1,173 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = OficinaMecanica
+build_property.RootNamespace = OficinaMecanica
+build_property.ProjectDir = C:\Users\VICTOR\Source\Repos\OficinaMecanicaWeb2\OficinaMecanica\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\VICTOR\Source\Repos\OficinaMecanicaWeb2\OficinaMecanica
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroCargo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb0NhcmdvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb0NhdGVnb3JpYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroClienteCNPJ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb0NsaWVudGVDTlBKLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroClienteCPF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb0NsaWVudGVDUEYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroFuncionario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb0Z1bmNpb25hcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroMarca.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb01hcmNhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroModelo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb01vZGVsby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroOrdemServico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb09yZGVtU2Vydmljby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroServico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb1NlcnZpY28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/CadastroVeiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryb1ZlaWN1bG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheCargo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlQ2FyZ28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlQ2F0ZWdvcmlhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheClienteCNPJ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlQ2xpZW50ZUNOUEouY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheClienteCPF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlQ2xpZW50ZUNQRi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheFuncionario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlRnVuY2lvbmFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheMarca.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlTWFyY2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheModelo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlTW9kZWxvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheOrdemServico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlT3JkZW1TZXJ2aWNvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheServico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlU2Vydmljby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/DetalheVeiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhbGhlVmVpY3Vsby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarCargo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJDYXJnby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJDYXRlZ29yaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarClienteCNPJ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJDbGllbnRlQ05QSi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarClienteCPF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJDbGllbnRlQ1BGLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarFuncionario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJGdW5jaW9uYXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarMarca.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJNYXJjYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarModelo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJNb2RlbG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarOrdemServico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJPcmRlbVNlcnZpY28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarServico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJTZXJ2aWNvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/EditarVeiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJWZWljdWxvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/Relatorio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWxhdG9yaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Home/Visualizacao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaXN1YWxpemFjYW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-s9qh3ievpq
+
+[C:/Users/VICTOR/Source/Repos/OficinaMecanicaWeb2/OficinaMecanica/Views/Shared/_LayoutDeslogado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXREZXNsb2dhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-p83gsg6x7e

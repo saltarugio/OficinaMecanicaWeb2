@@ -1,0 +1,677 @@
+﻿
+@{
+    ViewData["Title"] = "Visualização";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    table {
+        display: none;
+        
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $("#categoria").change(function () {
+            var SELECTedCategoria = $(this).val();
+            $("table").css("display", "none");  // Ocultar todas as tabelas
+
+            // Mostrar a tabela correspondente à categoria SELECTionada
+            $("table[data-categoria='" + SELECTedCategoria + "']").css("display", "table");
+        });
+
+        // Exibir a tabela correta com base na categoria inicial SELECTionada (se houver)
+        var initialCategoria = $("#categoria").val();
+        $("table[data-categoria='" + initialCategoria + "']").css("display", "table");
+    });
+</script>
+
+<div id="teste" class="text-center d-grid gap-2">
+    <h1>@ViewData["Title"]</h1>
+    <label>Busca</label>
+    <SELECT id="categoria" class="form-control">
+        <option value="0">Selecione</option>
+        <option value="1">Funcionário</option>
+        <option value="2">Cliente Físico</option>
+        <option value="3">Cliente Jurídico</option>
+        <option value="4">Cargo</option>
+        <option value="5">Marca</option>
+        <option value="6">Modelo</option>
+        <option value="7">Categoria</option>
+        <option value="8">Ordem de Serviço</option>
+        <option value="9">Serviço</option>
+        <option value="10">Veículo</option>
+    </SELECT>
+   <div class="table-responsive">
+        <!-- Tabelas com atributo 'data-categoria' para identificação -->
+        <table class="table" data-categoria="0">
+           
+        </table>
+        <!--Funcionario-->
+        <table class="table table-striped" data-categoria="1">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Sexo</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Data Admissão</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.funcionarios)
+                    {
+                        <tr>
+                            <td value="@item.idFuncionario">@item.nomeFuncionario</td>
+                            <td value="@item.idFuncionario">@item.cpf</td>
+                            <td value="@item.idFuncionario">@item.sexo</td>
+                            <td value="@item.idFuncionario">@item.salario</td>
+                            <td value="@item.idFuncionario">@item.celular</td>
+                            <td value="@item.idFuncionario">@item.dataAdmissao.ToString("dd/MM/yyyy")</td>
+                            <td value="@item.idFuncionario">@item.cargo.nomeCargo</td>
+                            <td value="@item.idFuncionario">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarFuncionario" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idFuncionario">Editar</a>
+                                    <a asp-action="DetalheFuncionario" class="btn btn-success mr-1" role="button" asp-route-id="@item.idFuncionario">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-1-@item.idFuncionario">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-1-@item.idFuncionario" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.nomeFuncionario?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarFun" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idFuncionario">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Cliente Físico-->
+        <table class="table table-striped" data-categoria="2">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Sexo</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.ClientesCpf)
+                    {
+                        @if (item.cpf != "juridica")
+                        {
+                            <tr>
+                                <td value="@item.idCliente">@item.nomeCliente</td>
+                                <td value="@item.idCliente">@item.cpf</td>
+                                <td value="@item.idCliente">@item.sexo</td>
+                                <td value="@item.idCliente">@item.email</td>
+                                <td value="@item.idCliente">@item.celular</td>
+                                <td value="@item.idCliente">
+                                    @{
+                                        if (item.status == 0)
+                                        {
+                                            @Html.Raw("Ativo")
+                                        }
+                                        else if (item.status == 1)
+                                        {
+                                            @Html.Raw("Desativado")
+                                        }
+                                    }
+                                </td>
+                                <td class="row">
+                                    <div class="d-grid gap-2 d-md-block" role="group">
+                                        <a asp-action="EditarClienteCPF" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idCliente">Editar</a>
+                                        <a asp-action="DetalheClienteCPF" class="btn btn-success mr-1" role="button" asp-route-id="@item.idCliente">Detalhe</a>
+                                        <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-2-@item.idCliente">
+                                            Apagar
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="ApagarModal-2-@item.idCliente" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Realmente deseja excluir @item.nomeCliente?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                        <a asp-action="ApagarCli" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idCliente">Sim</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Cliente Jurídico-->
+        <table class="table table-striped" data-categoria="3">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">Sexo</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.ClientesCnpj)
+                    {
+                        @if (item.cnpj != "fisica")
+                        {
+                            <tr>
+                                <td value="@item.idCliente">@item.nomeCliente</td>
+
+                                <td value="@item.idCliente">@item.cnpj</td>
+                                <td value="@item.idCliente">@item.sexo</td>
+                                <td value="@item.idCliente">@item.email</td>
+                                <td value="@item.idCliente">@item.celular</td>
+                                <td value="@item.idCliente">
+                                    @{
+                                        if (item.status == 0)
+                                        {
+                                            @Html.Raw("Ativo")
+                                        }
+                                        else if (item.status == 1)
+                                        {
+                                            @Html.Raw("Desativado")
+                                        }
+                                    }
+                                </td>
+                                <td class="row">
+                                    <div class="d-grid gap-2 d-md-block" role="group">
+                                        <a asp-action="EditarClienteCNPJ" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idCliente">Editar</a>
+                                        <a asp-action="DetalheClienteCNPJ" class="btn btn-success mr-1" role="button" asp-route-id="@item.idCliente">Detalhe</a>
+                                        <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-3-@item.idCliente">
+                                            Apagar
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="ApagarModal-3-@item.idCliente" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Realmente deseja excluir @item.nomeCliente?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                        <a asp-action="ApagarCli" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idCliente">Sim</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Cargo-->
+        <table class="table table-striped" data-categoria="4">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.Cargos)
+                    {
+                        <tr>
+                            <td value="@item.idCargo">@item.nomeCargo</td>
+                            <td value="@item.idCargo">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarCargo" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idCargo">Editar</a>
+                                    <a asp-action="DetalheCargo" class="btn btn-success mr-1" role="button" asp-route-id="@item.idCargo">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-4-@item.idCargo">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-4-@item.idCargo" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.nomeCargo?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarCar" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idCargo">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Marca-->
+        <table class="table table-striped" data-categoria="5">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.Marcas)
+                    {
+                        <tr>
+                            <td value="@item.idMarca">@item.nomeMarca</td>
+                            <td value="@item.idMarca">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarMarca" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idMarca">Editar</a>
+                                    <a asp-action="DetalheMarca" class="btn btn-success mr-1" role="button" asp-route-id="@item.idMarca">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-5-@item.idMarca">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-5-@item.idMarca" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.nomeMarca?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarMar" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idMarca">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Modelo-->
+        <table class="table table-striped" data-categoria="6">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.Modelos)
+                    {
+                        <tr>
+                            <td value="@item.idModelo">@item.nomeModelo</td>
+                            <td value="@item.idModelo">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarModelo" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idModelo">Editar</a>
+                                    <a asp-action="DetalheModelo" class="btn btn-success mr-1" role="button" asp-route-id="@item.idModelo">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-6-@item.idModelo">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-6-@item.idModelo" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.nomeModelo?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarMod" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idModelo">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Categoria-->
+        <table class="table table-striped" data-categoria="7">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.Categorias)
+                    {
+                        <tr>
+                            <td value="@item.idCategoria">@item.nomeCategoria</td>
+                            <td value="@item.idCategoria">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarCategoria" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idCategoria">Editar</a>
+                                    <a asp-action="DetalheCategoria" class="btn btn-success mr-1" role="button" asp-route-id="@item.idCategoria">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-7-@item.idCategoria">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-7-@item.idCategoria" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.nomeCategoria?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarCat" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idCategoria">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Ordem de Serviço-->
+        <table class="table table-striped" data-categoria="8">
+            <thead>
+                <tr>
+                    <th scope="col">Data do Serviço</th>
+                    <th scope="col">Funcionário</th>
+                    <th scope="col">Veiculo</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.OrdemServicos)
+                    {
+                        <tr>
+                            <td value="@item.idOrdemServico">@item.data.ToString("dd/MM/yyyy")</td>
+                            <td value="@item.idOrdemServico">@item.funcionario.nomeFuncionario</td>
+                            <td value="@item.idOrdemServico">@item.veiculo.placa</td>
+                            <td value="@item.idOrdemServico">@item.cliente.nomeCliente</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarOrdemServico" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idOrdemServico">Editar</a>
+                                    <a asp-action="DetalheOrdemServico" class="btn btn-success mr-1" role="button" asp-route-id="@item.idOrdemServico">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-8-@item.idOrdemServico">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-8-@item.idOrdemServico" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarOrS" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idOrdemServico">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Serviço-->
+        <table class="table table-striped" data-categoria="9">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.Servicos)
+                    {
+                        <tr>
+                            <td value="@item.idServico">@item.nomeServico</td>
+                            <td value="@item.idServico">@item.preco</td>
+                            <td value="@item.idServico">@item.categoria.nomeCategoria</td>
+                            <td value="@item.idServico">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarServico" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idServico">Editar</a>
+                                    <a asp-action="DetalheServico" class="btn btn-success mr-1" role="button" asp-route-id="@item.idServico">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-9-@item.idServico">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-9-@item.idServico" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.nomeServico?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarSer" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idServico">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--Veiculo-->
+        <table class="table table-striped" data-categoria="10">
+            <thead>
+                <tr>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.Veiculos)
+                    {
+                        <tr>
+                            <td value="@item.idVeiculo">@item.ano</td>
+                            <td value="@item.idVeiculo">@item.placa</td>
+                            <td value="@item.idVeiculo">@item.marca.nomeMarca</td>
+                            <td value="@item.idVeiculo">@item.modelo.nomeModelo</td>
+                            <td value="@item.idVeiculo">@item.cliente.nomeCliente</td>
+                            <td value="@item.idVeiculo">@{
+                                    if (item.status == 0)
+                                    {
+                                        @Html.Raw("Ativo")
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        @Html.Raw("Desativado")
+                                    }
+                                }</td>
+                            <td class="row">
+                                <div class="d-grid gap-2 d-md-block" role="group">
+                                    <a asp-action="EditarVeiculo" class="btn btn-primary mr-1" role="button" asp-route-id="@item.idVeiculo">Editar</a>
+                                    <a asp-action="DetalheVeiculo" class="btn btn-success mr-1" role="button" asp-route-id="@item.idVeiculo">Detalhe</a>
+                                    <button class="btn btn-danger mr-1" role="button" data-bs-toggle="modal" data-bs-target="#ApagarModal-10-@item.idVeiculo">
+                                        Apagar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ApagarModal-10-@item.idVeiculo" tabindex="-1" aria-labelledby="ApagarModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="ApagarModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Realmente deseja excluir @item.placa?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                                    <a asp-action="ApagarVei" class="btn btn-danger mr-1" role="button" asp-route-id="@item.idVeiculo">Sim</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+   </div>
+</div>

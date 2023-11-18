@@ -1,0 +1,62 @@
+﻿@model OficinaMecanica.Models.POJO.Veiculo
+@{
+    ViewData["Title"] = "Editar Veiculo";
+}
+
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>Veiculos</h1>
+    <div class="form-group">
+        <input type="hidden" class="form-control" name="idVeiculo" value="@Model.idVeiculo" disabled>
+        <label for="ano">Ano do Veiculo</label>
+        <input type="text" class="form-control" id="ano" name="ano" value="@Model.ano" disabled>
+        
+        <label for="placa">Placa do Veiculo</label>
+        <input type="text" class="form-control" id="placa" name="placa" value="@Model.placa" disabled>
+    
+        <label for="marca">Marca</label>
+        <select id="marca" name="marca_idMarca" class="form-control" disabled>
+            @if (ViewBag.Marcas != null)
+            {
+                <option value="@Model.marca_idMarca">@Model.marca.nomeMarca</option>
+            }
+        </select>
+
+        <label for="modelo">Modelo</label>
+        <select id="modelo" name="modelo_idModelo" class="form-control" disabled>
+            @if (ViewBag.Modelos != null)
+            {
+                <option value="@Model.modelo_idModelo">@Model.modelo.nomeModelo</option>
+            }
+        </select>
+
+        <label for="cliente">Cliente</label>
+        <select id="cliente" name="cliente_idCliente" class="form-control" disabled>
+            @if (ViewBag.Clientes != null)
+            {
+                <option value="@Model.cliente_idCliente">@Model.cliente.nomeCliente</option>
+            }
+        </select>
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" disabled>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status1" disabled>
+        <input type="hidden" id="status" name="status" disabled />
+        <label class="form-check-label" for="status" disabled>Ativo</label>
+    </div>
+        <script>
+            if (@Model.status == 0) {
+                document.getElementById("status1").checked = true;
+            } if (@Model.status == 1) {
+                document.getElementById("status1").checked = false;
+            }
+        </script>
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</form>

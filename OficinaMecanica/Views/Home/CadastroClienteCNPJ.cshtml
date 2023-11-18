@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Cadastro Cliente";
+}
+<link rel="stylesheet" href="~/css/forms.css"/>
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <label for="nome">Nome do Cliente</label>
+        <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" placeholder="Digite o nome do cliente.." required>
+        
+        <label for="cnpj">CNPJ</label>
+        <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Digite o cnpj.." required>
+        
+        <input type="hidden" class="form-control" id="cpf" name="cpf"  required>
+        <script>
+            // Verifique o estado atual dos radio buttons
+            var cpf = document.getElementById("cpf");
+
+            // Defina o valor inicial com base no radio button selecionado
+            cpf = "juridica"
+
+            // Adicione um evento para atualizar o valor quando os radio buttons forem alterados
+            document.getElementById("cpf").value = cpf;
+        </script>
+        <label for="email">email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email do cliente.." required>
+        
+        <label for="telefone">telefone</label>
+        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone do cliente..">
+        
+        <label for="celular">celular</label>
+        <input type="tel" class="form-control" id="nomeClcelulariente" name="celular" placeholder="Digite o celular do cliente.." required>
+
+        <label for="cep">cep</label>
+        <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o cep do cliente.." required>
+       
+        <label for="uf">Estado</label>
+        <select id="uf" name="uf" class="form-control">
+            <option value="">Selecione um estado</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+        
+        <label for="cidade">cidade</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite o nome do cliente.." required>
+        
+        <label for="bairro">bairro</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o bairro do cliente.." required>
+        
+        <label for="rua">rua</label>
+        <input type="text" class="form-control" id="rua" name="rua" placeholder="Digite o nome da rua.." required>
+
+        <label for="numero">numero</label>
+        <input type="text" class="form-control" id="numero" name="numero" placeholder="Digite o numero.." required>
+
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"  placeholder="Data do nascimento" required>
+
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="date" class="form-control" id="dataCadastro" name="dataCadastro" placeholder="Data do cadastro" readonly required>
+        <script>
+            // Obtém a data atual
+            var dataAtual = new Date();
+
+            // Formata a data no formato "YYYY-MM-DD" esperado pelo campo de data
+            var ano = dataAtual.getFullYear();
+            var mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+            var dia = dataAtual.getDate().toString().padStart(2, '0');
+            var dataFormatada = ano + '-' + mes + '-' + dia;
+
+            // Define o valor do campo de data para a data atual formatada
+            document.getElementById('dataCadastro').value = dataFormatada;
+        </script>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="masculino" name="customRadio" class="custom-control-input" value="masculino">
+        <label class="custom-control-label" for="customRadio1">Masculino</label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="feminino" name="customRadio" class="custom-control-input" value="feminino">
+        <label class="custom-control-label" for="customRadio2">Feminino</label>
+    </div>
+    <!-- Adicione um input hidden para armazenar o valor selecionado do radio button -->
+    <input type="hidden" id="sexo" name="sexo" value="">
+
+    <!-- JavaScript para atualizar o valor do input hidden com o radio button selecionado -->
+    <script>
+        // Verifique o estado atual dos radio buttons
+        var masculinoRadio = document.getElementById("masculino");
+        var femininoRadio = document.getElementById("feminino");
+        var sexoInput = document.getElementById("sexo");
+
+        // Defina o valor inicial com base no radio button selecionado
+        if (masculinoRadio.checked) {
+            sexoInput.value = "masculino";
+        } else if (femininoRadio.checked) {
+            sexoInput.value = "feminino";
+        }
+
+        // Adicione um evento para atualizar o valor quando os radio buttons forem alterados
+        masculinoRadio.addEventListener("change", function () {
+            sexoInput.value = "masculino";
+        });
+
+        femininoRadio.addEventListener("change", function () {
+            sexoInput.value = "feminino";
+        });
+    </script>
+
+    <div class="form-check">
+
+        <input type="checkbox" class="form-check-input" id="status" name="status" disabled required>
+        <label class="form-check-label" for="statusCheckbox" disabled>Ativo</label>
+        <script>
+            // Defina o estado inicial como Ativado
+            document.getElementById("status").checked = true;
+            // Verifique o estado atual do checkbox
+            var checkbox = document.getElementById("status");
+            var resultado = checkbox.Checked ? 1 : 0;
+            document.getElementById("status").value = resultado;
+        </script>
+    </div>
+
+    <button type="submit" id="cadastrobtn" class="btn btn-success">Cadastrar</button>
+</form>
+<div id="alert">
+    @if (ViewBag.Sucesso != null)
+    {
+        <div class="alert-success" role="alert">
+            <p>@ViewBag.Sucesso</p>
+        </div>
+    }
+    else
+    {
+        <div class="alert-danger" role="alert">
+            <p>@ViewBag.Erro</p>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        // Esconde o bloco de alerta inicialmente
+        $("#alert").hide();
+
+        // Adiciona um manipulador de eventos para o botão "Cadastrar"
+        $("#seuBotaoCadastrar").click(function () {
+            // Exibe o bloco de alerta ao clicar no botão
+            $("#alert").show();
+        });
+    });
+</script>

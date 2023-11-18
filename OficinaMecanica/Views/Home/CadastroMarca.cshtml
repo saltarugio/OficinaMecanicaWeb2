@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Cadastro Marca";
+}
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <label for="nome">Nome da Marca</label>
+        <input type="text" class="form-control" id="nomeMarca" name="nomeMarca" placeholder="Digite o Marca.." required>
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="date" class="form-control" id="dataCadastro" name="dataCadastro" value="" placeholder="Data do cadastro" readonly required>
+        <script>
+            // Obtém a data atual
+            var dataAtual = new Date();
+
+            // Formata a data no formato "YYYY-MM-DD" esperado pelo campo de data
+            var ano = dataAtual.getFullYear();
+            var mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+            var dia = dataAtual.getDate().toString().padStart(2, '0');
+            var dataFormatada = ano + '-' + mes + '-' + dia;
+
+            // Define o valor do campo de data para a data atual formatada
+            document.getElementById('dataCadastro').value = dataFormatada;
+        </script>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status" name="status" disabled required>
+
+        <label class="form-check-label" for="statusCheckbox" disabled>Ativo</label>
+        <script>
+            // Defina o estado inicial como Ativado
+            document.getElementById("status").checked = true;
+            // Verifique o estado atual do checkbox
+            var checkbox = document.getElementById("status");
+            var resultado = checkbox.Checked ? 1 : 0;
+            document.getElementById("status").value = resultado;
+        </script>
+    </div>
+
+    <button type="submit" id="cadastrobtn" class="btn btn-success">Cadastrar</button>
+</form>
+<div id="alert">
+    @if (ViewBag.Sucesso != null)
+    {
+        <div class="alert-success" role="alert">
+            <p>@ViewBag.Sucesso</p>
+        </div>
+    }
+    else
+    {
+        <div class="alert-danger" role="alert">
+            <p>@ViewBag.Erro</p>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        // Esconde o bloco de alerta inicialmente
+        $("#alert").hide();
+
+        // Adiciona um manipulador de eventos para o botão "Cadastrar"
+        $("#seuBotaoCadastrar").click(function () {
+            // Exibe o bloco de alerta ao clicar no botão
+            $("#alert").show();
+        });
+    });
+</script>

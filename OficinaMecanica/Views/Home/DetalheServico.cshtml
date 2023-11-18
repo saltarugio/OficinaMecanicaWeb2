@@ -1,0 +1,51 @@
+﻿@model OficinaMecanica.Models.POJO.Servico
+@{
+    ViewData["Title"] = "Editar Serviço";
+}
+
+<link rel="stylesheet" href="~/css/forms.css" />
+<form action="" method="post">
+    <h1>@ViewData["Title"]</h1>
+    <div class="form-group">
+        <input type="hidden" name="idServico" value="@Model.idServico">
+        <label for="nome">Nome da Serviço</label>
+        <input type="text" class="form-control" id="nomeServico" name="nomeServico" value="@Model.nomeServico" disabled>
+        
+        <label for="descricao">Descrição do Serviço</label>
+        <input type="text" class="form-control" id="descricao" name="descricao" value="@Model.descricao" disabled>
+        
+        <label for="preco">Preço</label>
+        <input type="text" class="form-control" id="preco" name="preco" value="@Model.preco" disabled>
+    
+        <label for="categoria">Categoria</label>
+        <select id="categoria" name="categoria_idCategoria" class="form-control" disabled>
+            @if (Model != null)
+                {
+                <option value="@Model.categoria_idCategoria">@Model.categoria.nomeCategoria</option>
+                }
+        </select>
+        </script>
+        <label for="dataAtual">Data do Cadastro</label>
+        <input type="text" class="form-control" id="dataCadastro" name="dataCadastro" value="@Model.dataCadastro.ToString("dd/MM/yyyy")" disabled>
+        
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="status1" disabled>
+        <input type="hidden" id="status" name="status" disabled />
+        <label class="form-check-label" for="status" disabled>Ativo</label>
+    </div>
+    <script>
+        if (@Model.status == 0) {
+            document.getElementById("status1").checked = true;
+        } if (@Model.status == 1) {
+            document.getElementById("status1").checked = false;
+        }
+    </script>
+
+    <div class="row " role="group">
+        <div class="d-grid gap-2">
+            <a asp-action="Visualizacao" type="button" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</form>
